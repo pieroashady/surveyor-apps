@@ -1,42 +1,87 @@
 package com.pieroashady.perpustakaan.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.navigation.NavigationView;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.pieroashady.perpustakaan.R;
+import com.pieroashady.perpustakaan.adapter.CustomersAdapter;
+import com.pieroashady.perpustakaan.model.Customers;
 import com.pieroashady.perpustakaan.utils.Tools;
+import com.raizlabs.android.dbflow.sql.queriable.StringQuery;
+import com.raizlabs.android.dbflow.structure.database.transaction.QueryTransaction;
+
+import java.util.List;
 
 
 public class UserMenu extends AppCompatActivity {
 
-    private ActionBar actionBar;
-    private Toolbar toolbar;
-    private Menu menu_navigation;
-    private DrawerLayout drawer;
-    private View navigation_header;
-    private boolean is_account_mode = false;
+    public ActionBar actionBar;
+    public Toolbar toolbar;
+    public Menu menu_navigation;
+    public DrawerLayout drawer;
+    public View navigation_header;
+    public boolean is_account_mode = false;
+    public RecyclerView listCust;
+    public Button btnAdd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_drawer_mail);
-
+        listCust = findViewById(R.id.list_item);
+        btnAdd = findViewById(R.id.btnTambahData);
+        btnAdd.setOnClickListener((a) -> {
+            Intent intent = new Intent(UserMenu.this, FormSurveyor.class);
+            startActivity(intent);
+        });
         initToolbar();
         initNavigationMenu();
+        sqlQueryList();
     }
+
+    private void sqlQueryList() {
+        String rawQuery = "SELECT * FROM `Customers`  ";
+        StringQuery<Customers> stringQuery = new StringQuery<>(Customers.class, rawQuery);
+        stringQuery
+                .async()
+                .queryListResultCallback(new QueryTransaction.QueryResultListCallback<Customers>() {
+                                             @Override
+                                             public void onListQueryResult(QueryTransaction transaction, @NonNull List<Customers> models) {
+
+                                                 if (models.size() > 0) {
+                                                     setupAdapterList(models);
+                                                 }
+                                             }
+                                         }
+                )
+                .execute();
+    }
+
+    private void setupAdapterList(List<Customers> model) {
+        CustomersAdapter toadapter = new CustomersAdapter (UserMenu.this,model);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(UserMenu.this, LinearLayoutManager.VERTICAL, false);
+        listCust.setLayoutManager(linearLayoutManager);
+        listCust.setAdapter(toadapter);
+    }
+
 
     private void initToolbar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
