@@ -1,5 +1,6 @@
 package com.pieroashady.perpustakaan.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,6 +31,7 @@ public class FormSurveyor extends AppCompatActivity {
         editKeterangan = findViewById(R.id.editKet);
         editPekerjaan = findViewById(R.id.editPekerjaan);
         editTelp = findViewById(R.id.editTelp);
+        editGender = findViewById(R.id.editGender);
         btnSave = findViewById(R.id.btnSave);
         btnSave.setOnClickListener((s) -> {
             Customers cust = new Customers();
@@ -39,10 +41,18 @@ public class FormSurveyor extends AppCompatActivity {
             cust.setPob(editPob.getText().toString());
             cust.setGender(editGender.getText().toString());
             cust.setKeterangan(editKeterangan.getText().toString());
-            cust.setNoTelpCust(Integer.parseInt(editTelp.getText().toString()));
+            cust.setNoTelpCust(Long.parseLong(editTelp.getText().toString()));
             cust.setPekerjaan(editPekerjaan.getText().toString());
             cust.setUmurCust(Integer.parseInt(editUmur.getText().toString()));
             cust.save();
+            if(cust.save()) {
+                Toast.makeText(FormSurveyor.this, "Data Tersimpan", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(FormSurveyor.this, "Gagal Tersimpan", Toast.LENGTH_LONG).show();
+            }
+            Intent intentForm = new Intent(FormSurveyor.this, UserMenu.class);
+            startActivity(intentForm);
+            finish();
         });
         initToolbar();
         //initComponent();

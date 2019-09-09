@@ -51,6 +51,7 @@ public class UserMenu extends AppCompatActivity {
         btnAdd.setOnClickListener((a) -> {
             Intent intent = new Intent(UserMenu.this, FormSurveyor.class);
             startActivity(intent);
+
         });
         initToolbar();
         initNavigationMenu();
@@ -90,7 +91,7 @@ public class UserMenu extends AppCompatActivity {
         actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
-        actionBar.setTitle("Drawer News");
+        actionBar.setTitle("Customers List");
         Tools.setSystemBarColor(this, R.color.pink_700);
     }
 
