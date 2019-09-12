@@ -47,14 +47,14 @@ public class CustomersDetailAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             final Customers cust = lstCust.get(position);
 
             view.txtCust.setText(cust.getNamaCust());
-            view.txtDob.setText(cust.getDob());
-            view.txtKet.setText(cust.getKeterangan());
-            view.txtAlamat.setText(cust.getAlamat());
-            view.txtPob.setText(cust.getPob());
-            view.txtPhone.setText(String.valueOf(cust.getNoTelpCust()));
-            view.txtPekerjaan.setText(cust.getPekerjaan());
-            view.txtUmur.setText(String.valueOf(cust.getUmurCust()));
-            view.txtGender.setText(cust.getGender());
+            view.txtDob.setText("Tanggal Lahir : " + cust.getDob());
+            view.txtKet.setText("Gaji : " + cust.getKeterangan());
+            view.txtAlamat.setText("Alamat : " + cust.getAlamat());
+            view.txtPob.setText("Tempat Lahir : " + cust.getPob());
+            view.txtPhone.setText("Nomor Telp : " + String.valueOf(cust.getNoTelpCust()));
+            view.txtPekerjaan.setText("Pekerjaan" + cust.getPekerjaan());
+            view.txtUmur.setText("Umur : " + String.valueOf(cust.getUmurCust()));
+            view.txtGender.setText("Gender" + cust.getGender());
             view.btnDelete.setOnClickListener((c)->{
                 cust.delete();
                 Toast.makeText(context, "Data Terhapus", Toast.LENGTH_LONG).show();

@@ -53,6 +53,10 @@ public class Surveyor extends BaseModel implements Serializable, Parcelable {
     @Expose
     @Column
     private long no_telp;
+    @SerializedName("password")
+    @Expose
+    @Column
+    private String password;
 
 
     public Surveyor(){
@@ -131,6 +135,14 @@ public class Surveyor extends BaseModel implements Serializable, Parcelable {
         this.no_telp = no_telp;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public final static Creator<Surveyor> CREATOR = new Creator<Surveyor>() {
 
 
@@ -159,6 +171,7 @@ public class Surveyor extends BaseModel implements Serializable, Parcelable {
         this.no_telp = ((Long) in.readValue((String.class.getClassLoader())));
         this.gender = ((String) in.readValue((String.class.getClassLoader())));
         this.perusahaan = ((String) in.readValue((String.class.getClassLoader())));
+        this.password = ((String) in.readValue((String.class.getClassLoader())));
     }
 
     @Override
@@ -177,5 +190,6 @@ public class Surveyor extends BaseModel implements Serializable, Parcelable {
         parcel.writeValue(gender);
         parcel.writeValue(no_telp);
         parcel.writeValue(perusahaan);
+        parcel.writeValue(password);
     }
 }

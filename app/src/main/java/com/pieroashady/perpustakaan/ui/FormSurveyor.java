@@ -18,7 +18,7 @@ import com.pieroashady.perpustakaan.utils.Tools;
 public class FormSurveyor extends AppCompatActivity {
 
     EditText editNama, editAlamat, editPob, editDob, editUmur, editKeterangan, editPekerjaan, editTelp, editGender;
-    Button btnSave;
+    Button btnSave, btnCancel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +54,14 @@ public class FormSurveyor extends AppCompatActivity {
             startActivity(intentForm);
             finish();
         });
+
+        btnCancel = findViewById(R.id.btnCancel);
+        btnCancel.setOnClickListener((c)->{
+            Intent cancelAdd = new Intent(FormSurveyor.this, HomeActivity.class);
+            startActivity(cancelAdd);
+            finish();
+        });
+
         initToolbar();
         //initComponent();
 
@@ -106,7 +114,4 @@ public class FormSurveyor extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-
-
 }

@@ -10,7 +10,7 @@ public class SharedPreferencesUtil {
 
     private static final String PREF_NAME = "GPS_TRACKER_PREF";
     private static final String PREF_JOB_FLAG = "job_flag";
-    private static final String PREF_USERNAME = "username";
+    private static final String PREF_USERNAME = "surveyorId";
 
     private SharedPreferences mSharedPreferences;
 

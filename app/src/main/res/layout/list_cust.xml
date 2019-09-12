@@ -51,13 +51,6 @@
                     android:orientation="vertical"
                     tools:context=".ui.MenuUtama">
 
-                    <Button
-                        android:id="@+id/btnTambahData"
-                        style="@style/Button.Accent"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Add Customer" />
-
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/list_item"
                         android:layout_width="match_parent"

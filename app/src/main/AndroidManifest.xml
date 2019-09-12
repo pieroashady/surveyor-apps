@@ -10,7 +10,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.CustomersDetail"></activity>
+        <activity android:name=".ui.HomeActivity"></activity>
+        <activity android:name=".ui.CustomersDetail" />
         <activity android:name=".ui.FormSurveyor" />
         <activity android:name=".ui.UserMenu" />
         <activity android:name=".ui.LoginActivity" />
@@ -26,6 +27,8 @@
         </activity>
         <activity android:name=".ui.MainActivity" />
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <dist:module dist:instant="true" />
 

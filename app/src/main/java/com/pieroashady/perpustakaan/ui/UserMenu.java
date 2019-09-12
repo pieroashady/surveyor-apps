@@ -1,6 +1,5 @@
 package com.pieroashady.perpustakaan.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -41,18 +40,19 @@ public class UserMenu extends AppCompatActivity {
     public boolean is_account_mode = false;
     public RecyclerView listCust;
     public Button btnAdd;
+    public static int USER_MENU = 1111;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_drawer_mail);
         listCust = findViewById(R.id.list_item);
-        btnAdd = findViewById(R.id.btnTambahData);
-        btnAdd.setOnClickListener((a) -> {
-            Intent intent = new Intent(UserMenu.this, FormSurveyor.class);
-            startActivity(intent);
-
-        });
+        //btnAdd = findViewById(R.id.btnTambahData);
+//        btnAdd.setOnClickListener((a) -> {
+//            Intent intent = new Intent(UserMenu.this, FormSurveyor.class);
+//            startActivity(intent);
+//            finish();
+//        });
         initToolbar();
         initNavigationMenu();
         sqlQueryList();
